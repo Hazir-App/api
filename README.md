@@ -8,3 +8,11 @@ API is currently up and running on heroku's servers.
 Main Endpoint
 
 ```https://hazirapi.herokuapp.com```
+
+If you're a HU student. You can access your attendance data for the ongoing semester from this endpoint
+
+```https://hazirapi.herokuapp.com/login?id=[your HUID]&pwd=[your password]```
+
+Sample:
+
+```https://hazirapi.herokuapp.com/login?id=ab01234&pwd=habibpass``` 
