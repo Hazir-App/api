@@ -46,6 +46,8 @@ def attendance_table(asoup, table_rows, skey):
     Attendance_Table["totalclasses"] = table_rows
     Attendance = []
 
+    print(Attendance_Table)
+
     for row in range(table_rows):
         Single_Attendance = {}
 
@@ -103,11 +105,15 @@ def attendance_table(asoup, table_rows, skey):
         elif status == "CHECKBO":
             Single_Attendance["Status"] = "Not Updated"
 
+        print(Single_Attendance)    
         Attendance.append(Single_Attendance)
         del Single_Attendance
 
     total_classes = present + absent
-    percentage = (present / total_classes) * 100
+    if (total_classes == 0):
+        percentage = 0
+    else:
+        percentage = (present / total_classes) * 100
     Attendance_Table["totalclasses"] = total_classes
     Attendance_Table["presentclasses"] = present
     Attendance_Table["absentclasses"] = absent
@@ -120,6 +126,9 @@ def attendance_table(asoup, table_rows, skey):
     Attendance_Table["coursecomponent"] = course_component
     Attendance_Table["coursesection"] = course_section
     Attendance_Table["skey"] = skey
+
+    print(Attendance_Table)
+
     return Attendance_Table
 
 

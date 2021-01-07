@@ -19,17 +19,17 @@ def generate_course_links(request_object, huid, passw):
         if 'var PFieldList_win4' in str(x):
             TOTAL_COURSES = str(x)
             break
-
-    TOTAL_COURSES = int(TOTAL_COURSES[TOTAL_COURSES.find('DESCR1')+8:len(TOTAL_COURSES)-79])
     
+    TOTAL_COURSES = int(TOTAL_COURSES[TOTAL_COURSES.find('DESCR1')+8:len(TOTAL_COURSES)-77])
+
     For_Codes = SoupStrainer('a',class_='PSHYPERLINK')
     code_soup = BeautifulSoup(request_object, 'lxml', parse_only=For_Codes)
 
     for link in range(TOTAL_COURSES):
         code = code_soup.find('a',class_='PSHYPERLINK',id='SELECT$'+str(link)).get_text()
-        url = 'https://pscs.habib.edu.pk/psc/ps_4/EMPLOYEE/PSFT_HR/c/MANAGE_ACADEMIC_RECORDS.STDNT_ATTENDANCE.GBL?Page=STDNT_ATTND_SRCH&Action=U&ACAD_CAREER=UGRD&CLASS_NBR='+code+'&DESCR=HCPPALL&EMPLID='+huid[2:]+'&INSTITUTION=HUNIV&STRM=2011&TargetFrameName=None&&'
+        url = "https://pscs.habib.edu.pk/psc/ps_4/EMPLOYEE/PSFT_HR/c/MANAGE_ACADEMIC_RECORDS.STDNT_ATTENDANCE.GBL?Page=STDNT_ATTND_SRCH&Action=U&ACAD_CAREER=UGRD&CLASS_NBR="+code+"&DESCR=HCPPALL&EMPLID="+huid[2:]+"&INSTITUTION=HUNIV&STRM=2015&TargetFrameName=None"
         course_links.append(url)
-    
+
     return course_links
 
 def Info_and_Courses(url, huid, passw):
@@ -40,8 +40,10 @@ def Info_and_Courses(url, huid, passw):
     Parse_only = SoupStrainer(class_=['PSEDITBOX_DISPONLY'])
     name_soup = BeautifulSoup(request_return, 'lxml', parse_only=Parse_only)
     Name = name_soup.find('span',class_='PSEDITBOX_DISPONLY',id='PERSONAL_DTSAVW_NAME').get_text()
+    print(Name)
     main_dict['username'] = Name
     main_dict['id'] = huid
+    print(main_dict)
     links = generate_course_links(request_return, huid, passw)
     main_dict['coursedata'] = multithreading(links, huid, passw)
 
@@ -60,7 +62,7 @@ def login_check():
 
     ID = request.args.get('id')
     PASS = request.args.get('pwd')
-
+    
     URL = 'https://pscs.habib.edu.pk/psc/ps_4/EMPLOYEE/PSFT_HR/c/X_ATTEND_TRACKING.STDNT_ATTEND_TERM.GBL?Page=STDNT_ATTDNCE1&Action=U&EMPLID='+ID[2:]+'&INSTITUTION=HUNIV&STRM=2011&TargetFrameName=None'
     login_data = {'userid':ID, 'pwd':PASS}
     r = requests.post(URL, data=login_data)
@@ -114,4 +116,5 @@ def login():
     return jsonify(return_main)
 
 if __name__ == '__main__':
+    # app.run(debug=True)
     app.run('0.0.0.0',8080)
