@@ -14,7 +14,6 @@ itsdangerous==1.1.0
 Jinja2==2.11.2
 jsonify==0.5
 lxml==4.6.2
-MarkupSafe==1.1.1
 post==2019.4.13
 Protego==0.1.16
 public==2020.12.3
