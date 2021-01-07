@@ -5,7 +5,6 @@ bs4==0.0.1
 certifi==2020.4.5.1
 Flask==1.1.2
 futures3==1.0.0
-get==2019.4.13
 gunicorn==20.0.4
 html5lib==1.0.1
 hyperlink==19.0.0
