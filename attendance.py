@@ -46,7 +46,7 @@ def attendance_table(asoup, table_rows, skey):
     Attendance_Table["totalclasses"] = table_rows
     Attendance = []
 
-    print(Attendance_Table)
+    # print(Attendance_Table)
 
     for row in range(table_rows):
         Single_Attendance = {}
@@ -105,7 +105,7 @@ def attendance_table(asoup, table_rows, skey):
         elif status == "CHECKBO":
             Single_Attendance["Status"] = "Not Updated"
 
-        print(Single_Attendance)    
+        # print(Single_Attendance)    
         Attendance.append(Single_Attendance)
         del Single_Attendance
 
@@ -127,7 +127,7 @@ def attendance_table(asoup, table_rows, skey):
     Attendance_Table["coursesection"] = course_section
     Attendance_Table["skey"] = skey
 
-    print(Attendance_Table)
+    # print(Attendance_Table)
 
     return Attendance_Table
 
@@ -140,7 +140,7 @@ def scrap_it(url_huid_passw):
     only_these = SoupStrainer(
         class_=["PSDROPDOWNLIST_DISPONLY", "PSCHECKBOX", "PSEDITBOX_DISPONLY",]
     )
-    request_return = requests.post(url, data=login_data).text
+    request_return = requests.post(url, data=login_data, verify=False).text
     row_soup = BeautifulSoup(request_return, "lxml", parse_only=for_row)
 
     # finding total classes in semester
