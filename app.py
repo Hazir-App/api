@@ -119,5 +119,5 @@ def login():
     return jsonify(return_main)
 
 if __name__ == '__main__':
-    app.run(debug=True)
-    app.run('0.0.0.0',8080)
+    app.run(debug=False)
+    app.run('0.0.0.0',80)
