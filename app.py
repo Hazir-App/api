@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup, SoupStrainer
 import concurrent.futures
-from flask import Flask, request
+from flask import Flask, request, render_template
 from flask import jsonify
 from attendance import *
 import time
@@ -88,7 +88,6 @@ def login_check():
         return jsonify(
             status = 'network error')
 
-    
 
 @app.route("/login")
 def login():
@@ -96,6 +95,7 @@ def login():
     ID = request.args.get('id')
     PASS = request.args.get('pwd')
 
+    print(ID, PASS)
     if isinstance(ID, str) == False or isinstance(PASS, str) == False:
         return jsonify(
             status = "null id or password"
