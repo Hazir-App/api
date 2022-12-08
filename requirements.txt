@@ -2,7 +2,7 @@ attrs==20.3.0
 Automat==20.2.0
 beautifulsoup4==4.9.3
 bs4==0.0.1
-certifi==2020.12.5
+certifi==2022.12.7
 Flask==1.1.2
 futures3==1.0.0
 gunicorn==20.0.4
