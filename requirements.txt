@@ -25,6 +25,6 @@ six==1.15.0
 soupsieve==2.1
 urllib3==1.26.2
 webencodings==0.5.1
-Werkzeug==1.0.1
+Werkzeug==2.2.3
 DateTime==4.3
 markupsafe==2.0.1
